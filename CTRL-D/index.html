@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="CTRL-D: Controllable Dynamic 3D Scene Editing with Personalized 2D Diffusion.">
+  <meta name="keywords" content="Garment Generation, Sewing Patterns, Autoregressive Model">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CTRL-D: Controllable Dynamic 3D Scene Editing with Personalized 2D Diffusion</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">CTRL-D: Controllable Dynamic 3D Scene Editing with Personalized 2D Diffusion</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="http://hekai.site">Kai He</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://chinhsuanwu.github.io/">Chin-Hsuan Wu</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://tisl.cs.toronto.edu/author/igor-gilitschenski/">Igor Gilitschenski</a><sup>1,2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Toronto,</span>
+            <span class="author-block"><sup>2</sup>Vector Institute</span>
+            <!-- <br>
+            <span class="author-block" style="color:#f87f4b;font-weight:normal;">
+              <b> ACM Transactions on Graphics (SIGGRAPH 2024) </b>
+            </span> -->
+          </div>
+          
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/papers/ctrl-d.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2401.16465"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://youtu.be/ofFyJBKL-Qg"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/IHe-KaiI/DressCode"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <p style="text-align: center;"><img src="./static/images/teaser.png" alt="" style="max-width:83%;"></p>
+      <h2 class="subtitle has-text-centered">
+      </h2>
+    </div>
+    <!-- <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/dance.mp4"
+                type="video/mp4">
+      </video>
+    </div> -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent advances in 3D representations, such as Neural Radiance Fields and 3D Gaussian Splatting, have greatly improved realistic scene modeling and novel-view synthesis. However, achieving controllable and consistent editing in dynamic 3D scenes remains a significant challenge. Previous work is largely constrained by its editing backbones, resulting in inconsistent edits and limited controllability. In our work, we introduce a novel framework that first fine-tunes the InstructPix2Pix model, followed by a two-stage optimization of the scene based on deformable 3D Gaussians. Our fine-tuning enables the model to ``learn'' the editing ability from a single edited reference image, transforming the complex task of dynamic scene editing into a simple 2D image editing process. By directly learning editing regions and styles from the reference, our approach enables consistent and precise local edits without the need for tracking desired editing regions, effectively addressing key challenges in dynamic scene editing. Then, our two-stage optimization progressively edits the trained dynamic scene, using a designed edited image buffer to accelerate convergence and improve temporal consistency. Compared to state-of-the-art methods, our approach offers more flexible and controllable local scene editing, achieving high-quality and consistent results.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/ofFyJBKL-Qg?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+
+    <!-- Overview. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="container is-max-desktop">
+          <div class="hero-body">
+            <p style="text-align: center;"><img src="./static/images/pipeline1.png" alt="" style="max-width:100%;"></p>
+            <h2 class="subtitle has-text-centered">
+            </h2>
+          </div>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            <b>Overview of our SewingGPT pipeline.</b> We quantize sewing patterns to the sequence of tokens and adopt a GPT-based architecture to generate the tokens autoregressively. Our SewingGPT enables users to generate highly diverse and high-quality sewing patterns under text prompt guidance.
+          </p>
+        </div>
+
+        <div class="container is-max-desktop">
+          <div class="hero-body">
+            <p style="text-align: center;"><img src="./static/images/pipeline2.png" alt="" style="max-width:100%;"></p>
+            <h2 class="subtitle has-text-centered">
+            </h2>
+          </div>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            <b>Overview of our entire DressCode pipeline for customized garment generation.</b> We employ a large language model to obtain shape prompts and texture prompts with natural language interaction and utilize the SewingGPT and a fine-tuned Stable Diffusion for high-quality and CG-friendly garment generation.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Overview. -->
+    
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+
+        <div class="container is-max-desktop">
+          <div class="hero-body">
+            <p style="text-align: center;"><img src="./static/images/gallery.png" alt="" style="max-width:100%;"></p>
+            <h2 class="subtitle has-text-centered">
+            </h2>
+          </div>
+        </div>
+<!-- 
+        <div class="content has-text-justified">
+          <p>
+            <b>Editing results.</b> From left to right: 1. neural rendering results 2. changed lighting 3. roughness adjustment 4. hair cutting 5.
+            base color alteration
+          </p>
+        </div> -->
+
+
+      </div>
+    </div>
+    <!--/ Dataset. -->
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{he2024dresscode,
+      title={DressCode: Autoregressively Sewing and Generating Garments from Text Guidance},
+      author={He, Kai and Yao, Kaixin and Zhang, Qixuan and Yu, Jingyi and Liu, Lingjie and Xu, Lan},
+      journal={ACM Transactions on Graphics (TOG)},
+      volume={43},
+      number={4},
+      pages={1--13},
+      year={2024},
+      publisher={ACM New York, NY, USA}
+    }</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            The website template was borrowed from <a href="https://nerfies.github.io/">Nerfies</a>. We would like to thank Keunhong Park for sharing the template.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
